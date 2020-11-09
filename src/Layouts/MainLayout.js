@@ -1,17 +1,35 @@
-import React from "react";
+import React, { useState, createContext } from "react";
 import Header from "../Components/Header";
 import SideNav from "../Components/SideNav";
 import styled from "styled-components";
+import QuickView from "../Components/QuickView";
+
+export const ModalContext = createContext();
 
 function MainLayout({ children }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [itemData, setItemData] = useState();
+  const contextFunctions = {
+    setIsModalOpen,
+    setItemData
+  };
+
   return (
-    <MainContainer>
-      <SideNav />
-      <Container>
-        <Header />
-        {children}
-      </Container>
-    </MainContainer>
+    <ModalContext.Provider value={contextFunctions}>
+      <MainContainer>
+        <SideNav />
+        <Container>
+          <Header />
+          {children}
+        </Container>
+        {isModalOpen && (
+          <QuickView
+            itemData={itemData}
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
+      </MainContainer>
+    </ModalContext.Provider>
   );
 }
 

@@ -1,10 +1,12 @@
 import React from "react";
 import RowContainer from "../Components/RowContainer";
-
+import { alertsData } from "../dataSource";
 function Alerts() {
   return (
     <div>
-      <RowContainer />
+      {alertsData.map((alert) => (
+        <RowContainer rowData={alert} />
+      ))}
     </div>
   );
 }

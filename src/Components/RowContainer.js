@@ -1,13 +1,18 @@
 import React from "react";
-import MaterialTable from "material-table";
+import styled from "styled-components";
+
 function RowContainer({ rowData }) {
   return (
-    <div>
+    <Container>
       <p>Name: {rowData.name}</p>
       <p>Date: {rowData.date}</p>
       <p>Description: {rowData.description}</p>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  border-top: 1px solid grey;
+`;
 
 export default RowContainer;
