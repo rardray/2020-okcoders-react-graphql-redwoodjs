@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import ItemList from "../Components/ItemList";
 import { ModalContext } from "../Layouts/MainLayout";
 import { itemsData } from "../dataSource";
+import styled from "styled-components";
 
 function Items() {
   const ModalFunctions = useContext(ModalContext);
@@ -12,7 +13,7 @@ function Items() {
     { title: "Location", field: "location" }
   ];
   return (
-    <div>
+    <ListContainer>
       <ItemList
         columns={columns}
         data={itemsData}
@@ -22,8 +23,12 @@ function Items() {
           ModalFunctions.setItemData(rowData);
         }}
       />
-    </div>
+    </ListContainer>
   );
 }
+
+const ListContainer = styled.div`
+  padding-bottom: 48px;
+`;
 
 export default Items;
